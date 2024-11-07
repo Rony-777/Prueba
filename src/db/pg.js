@@ -1,15 +1,16 @@
 const { Client } = require('pg');
 
 
-const connectionData = {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'aire',
-  password: '123',
-  port: '5432',
-}
+const cliente = new Client({
+  connectionString: 'postgresql://rony:Uii5GHCALrfIDEwx3gB8jxRQwvP0NKQF@dpg-csm2rjdumphs73chpvc0-a/calidad_aire_9xhy',
+  ssl: {
+    rejectUnauthorized: false
+  }
+});
 
-const cliente = new Client(connectionData);
-cliente.connect();
+
+cliente.connect()
+  .then(() => console.log("Conexión exitosa a la base de datos en Render"))
+  .catch(err => console.error("Error de conexión a la base de datos:", err));
 
 module.exports = cliente;
